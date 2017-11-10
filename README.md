@@ -8,11 +8,10 @@ web 这个是我们主要的输出系统，应该有一个完整的mvc架构，
 test 主要用于测试，其他的一些小工具还有代码片段也可以随意放啊哈哈哈。   
 嗯 0.0这就是分支仓库的事情。   
      
-下面 敲黑板 任务在哪里看呢~当然是issue和project。     
-EveryBody!!Can you notice a task has been created?
-Issues 和 Projects 实际上都可以用来做我们的项目管理，但对于我们来说要怎么用呢，暂定这样吧，issue我们用于统一发任务，而projects用于当任务看板，谁想贴个card就贴吧~大家可以用用这两个功能给大家打个招呼~    
-    
-Wiki 这个大家都不要忽视啊，后面一些规则，就写进去啦 （大家都要写哈）
-   
+下面 敲黑板 任务在哪里看呢~当然是issue和project。   
 
- 
+EveryBody!!Can you notice a task has been created?      
+
+Issues 和 Projects 实际上都可以用来做我们的项目管理，但对于我们来说要怎么用呢，暂定这样吧，issue我们用于统一发任务，而projects用于当任务看板，谁想贴个card就贴吧!大家可以用用这两个功能给大家打个招呼!
+        
+Wiki 这个大家都不要忽视啊，后面一些规则，就写进去啦 （大家都要写的哈）
