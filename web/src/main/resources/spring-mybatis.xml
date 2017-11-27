@@ -29,7 +29,7 @@
 <!--         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
 <!--         <property name="location" value="classpath:jdbc.properties" /> -->
 <!--     </bean> -->
-    <context:property-placeholder location="classpath:jdbc.properties" />
+    <context:property-placeholder location="classpath:config/jdbc.properties" />
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
