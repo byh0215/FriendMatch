@@ -1,4 +1,4 @@
-package jdte.module.web.utils;
+package jdte.friendmatch.api.utils;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomUtil {
 	/**
-	 * ²úÉú20Î»Ëæ»úÊý£ºÇ°17Î»»ùÓÚÊ±¼ä£¬ºó3ÎªËæ»ú²úÉú
+	 * ï¿½ï¿½ï¿½ï¿½20Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°17Î»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½3Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public static String getRandmDigital20(){

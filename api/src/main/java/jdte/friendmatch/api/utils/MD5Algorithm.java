@@ -1,4 +1,4 @@
-package jdte.module.web.utils;
+package jdte.friendmatch.api.utils;
 
 import java.security.*;
 

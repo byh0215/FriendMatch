@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!--在mybatis默认提供的别名的基础上,我们还可以自定义别名引用  -->
 	<typeAliases>
 		<!-- 批量定义别名 -->
-		<package name="jdte.module.web.entity" />
+		<package name="jdte.friendmatch.api.entity" />
 	</typeAliases>
 	
 	<!-- 配置pageHelper分页插件 -->

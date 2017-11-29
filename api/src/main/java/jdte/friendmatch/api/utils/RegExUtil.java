@@ -1,11 +1,11 @@
-package jdte.module.web.utils;
+package jdte.friendmatch.api.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegExUtil {
 	/**
-	 * ÅÐ¶ÏÊÇ·ñ½öÓÉÓ¢ÎÄ×ÖÄ¸¡¢.-_µÈ·ûºÅ×é³É
+	 * ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½.-_ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param str
 	 * @return
 	 */
@@ -15,7 +15,7 @@ public class RegExUtil {
 		return matcher.matches();
 	}
 	/**
-	 * ÅÐ¶ÏÊÇ·ñ½öÓÉÊý×Ö×é³ÉµÄÁ½Î»Êý
+	 * ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Î»ï¿½ï¿½
 	 * @param str
 	 * @return
 	 */
@@ -25,7 +25,7 @@ public class RegExUtil {
 		return matcher.matches();
 	}
 	/**
-	 * ÅÐ¶ÏÊÇ·ñ½öÓÉÊý×Ö×é³É
+	 * ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param str
 	 * @return
 	 */

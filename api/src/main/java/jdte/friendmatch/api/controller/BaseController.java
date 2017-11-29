@@ -1,4 +1,4 @@
-package jdte.module.web.controller;
+package jdte.friendmatch.api.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BaseController {
 
 	/**
-	 * µÇÂ¼ÇëÇó
+	 * ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	@RequestMapping(value = {"/", "login"})

@@ -1,4 +1,4 @@
-package jdte.module.web.entity;
+package jdte.friendmatch.api.entity;
 
 import java.io.Serializable;
 
