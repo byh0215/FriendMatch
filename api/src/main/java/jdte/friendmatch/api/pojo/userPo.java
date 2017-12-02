@@ -1,255 +1,257 @@
 public class userPo {
 	/*构造函数等的定义 by lsl 2017/12/2*/
-	public userPo(int id, String name,int sex,int timetag,int area,
+	public userPo(Integer id, String name,int sex,int timetag,int area,
 			int diffsex, int single,int sameroom,int subway,int ride,
 			int price,int center,int animal,int music,int workstation,
 			int game,int tablegame,int toursim,int health,int food,int
 			quiet,int skill,int call,int open)
 	{
-		this.ph_id   = id;
-		this.ph_name = name;
-		this.ph_sex  = sex;
-		this.ph_timetag = timetag;
-		this.ph_area    = area;
-		this.ph_diffsex = diffsex;
-		this.ph_single  = single;
-		this.ph_sameroom = sameroom;
-		this.ph_subway  = subway;
-		this.ph_ride    = ride;
-		this.ph_price   = price;
-		this.ph_center  = center;
-		this.ph_animal  = animal;
-		this.ph_music   = music;
-		this.ph_workstation = workstation;
-		this.ph_game    = game;
-		this.ph_tablegame = tablegame;
-		this.ph_tourism = toursim;
-		this.ph_health  = health;
-		this.ph_food    = food;
-		this.ph_quiet   = quiet;
-		this.ph_skill   = skill;
-		this.ph_call    = call;
-		this.ph_open    = open;
+		this.phId   = id;
+		this.phName = name;
+		this.phSex  = sex;
+		this.phTimetag = timetag;
+		this.phArea    = area;
+		this.phDiffsex = diffsex;
+		this.phSingle  = single;
+		this.phSameroom = sameroom;
+		this.phSubway  = subway;
+		this.phRide    = ride;
+		this.phPrice   = price;
+		this.phCenter  = center;
+		this.phAnimal  = animal;
+		this.phMusic   = music;
+		this.phWorkstation = workstation;
+		this.phGame    = game;
+		this.phTablegame = tablegame;
+		this.phTourism = toursim;
+		this.phHealth  = health;
+		this.phFood    = food;
+		this.phQuiet   = quiet;
+		this.phSkill   = skill;
+		this.phCall    = call;
+		this.phOpen    = open;
 	}
-	
+	public userPo()
+	{}
 	
 	/*成员变量definition by lsl 2017/12/2*/
-	private int ph_id;					//主键
-	private String ph_name;             //姓名
-	private int ph_sex;                 //性别
-	private int ph_timetag;   		    //入职时间
-	private int ph_area;    		    //租房区域
-	private int ph_diffsex;				//接受异性混租
-    private int ph_single;				//
-    private int ph_sameroom;		    //
-    private int ph_subway;				//
-    private int ph_ride;				//
-    private int ph_price;				//价格
-    private int ph_center;				//
-    private int ph_animal;				//接受爱心宠物师
-    private int ph_music;				//接受音乐人
-    private int ph_workstation;			//工作地点
-    private int ph_game;				//游戏爱好者
-    private int ph_tablegame;			//桌游爱好者{狼人杀、三国杀}
-    private int ph_tourism;				//旅游/摄影爱好者
-    private int ph_health;				//健身达人
-    private int ph_food;				//美食达人
-    private int ph_quiet;				//安静达人
-    private int ph_skill;				//个人技能
-    private int ph_call;				//电话
-    private int ph_open;  				//是否公开自己的合租信息给18的其他JDStar
+	private Integer phId;			   //主键
+	private String phName;             //姓名
+	private Integer phSex;             //性别
+	private Integer phTimetag;   	   //入职时间
+	private Integer phArea;    		   //租房区域
+	private Integer phDiffsex;		   //接受异性混租
+    private Integer phSingle;		   //
+    private Integer phSameroom;		   //
+    private Integer phSubway;		   //
+    private Integer phRide;			   //
+    private Integer phPrice;		   //价格
+    private Integer phCenter;		   //
+    private Integer phAnimal;	       //接受爱心宠物师
+    private Integer phMusic;		   //接受音乐人
+    private Integer phWorkstation;	   //工作地点
+    private Integer phGame;			   //游戏爱好者
+    private Integer phTablegame;	   //桌游爱好者{狼人杀、三国杀}
+    private Integer phTourism;		   //旅游/摄影爱好者
+    private Integer phHealth;		   //健身达人
+    private Integer phFood;			   //美食达人
+    private Integer phQuiet;		   //安静达人
+    private Integer phSkill;		   //个人技能
+    private Integer phCall;			   //电话
+    private Integer phOpen;  		   //是否公开自己的合租信息给18的其他JDStar
 	/*成员函数definition by lsl 2017/12/2*/
-    public int getPh_id()
+    public Integer getPh_id()
     {
-    	return this.ph_id;
+    	return this.phId;
     }
-    public void setPh_id(int ph_id)
+    public void setPh_id(int phId)
     {
-    	this.ph_id = ph_id;
+    	this.phId = phId;
     }
     public String getPh_name()
     {
-    	return this.ph_name;
+    	return this.phName;
     }
-    public void setPh_name(String ph_name)
+    public void setPh_name(String phName)
     {
-    	this.ph_name = ph_name;
+    	this.phName = phName;
     }
-    public int getPh_sex()
+    public Integer getPh_sex()
     {
-    	return this.ph_sex;
+    	return this.phSex;
     }
-    public void setPh_sex(int ph_sex)
+    public void setPh_sex(int phSex)
     {
-    	this.ph_sex = ph_sex;
+    	this.phSex = phSex;
     }
-    public int getPh_timetag()
+    public Integer getPh_timetag()
     {
-    	return this.ph_timetag;
+    	return this.phTimetag;
     }
-    public void setPh_timetag(int ph_timetag)
+    public void setPh_timetag(int phTimetag)
     {
-    	this.ph_timetag = ph_timetag;
+    	this.phTimetag = phTimetag;
     }
-    public int getPh_area()
+    public Integer getPh_area()
     {
-    	return this.ph_area;
+    	return this.phArea;
     }
-    public void setPh_area(int ph_area)
+    public void setPh_area(int phArea)
     {
-    	this.ph_area = ph_area;
+    	this.phArea = phArea;
     }
-    public int getPh_diffsex()
+    public Integer getPh_diffsex()
     {
-    	return this.ph_diffsex;
+    	return this.phDiffsex;
     }
-    public void setPh_diffsex(int ph_diffsex)
+    public void setPh_diffsex(int phDiffsex)
     {
-    	this.ph_diffsex = ph_diffsex;
+    	this.phDiffsex = phDiffsex;
     }
-    public int getPh_single()
+    public Integer getPh_single()
     {
-    	return this.ph_single;
+    	return this.phSingle;
     }
-    public void setPh_single(int ph_single)
+    public void setPh_single(int phSingle)
     {
-    	this.ph_single = ph_single;
+    	this.phSingle = phSingle;
     }
-    public int getPh_sameroom()
+    public Integer getPh_sameroom()
     {
-    	return this.ph_sameroom;
+    	return this.phSameroom;
     }
-    public void setPh_sameroom(int ph_sameroom)
+    public void setPh_sameroom(int phSameroom)
     {
-    	this.ph_sameroom = ph_sameroom;
+    	this.phSameroom = phSameroom;
     }
-    public int getPh_subway()
+    public Integer getPh_subway()
     {
-    	return this.ph_subway;
+    	return this.phSubway;
     }
-    public void setPh_subway(int ph_subway)
+    public void setPh_subway(int phSubway)
     {
-    	this.ph_subway = ph_subway;
+    	this.phSubway = phSubway;
     }
-    public int getPh_ride()
+    public Integer getPh_ride()
     {
-    	return this.ph_ride;
+    	return this.phRide;
     }
-    public void setPh_ride(int ph_ride)
+    public void setPh_ride(int phRide)
     {
-    	this.ph_ride = ph_ride;
+    	this.phRide = phRide;
     }
-    public int getPh_price()
+    public Integer getPh_price()
     {
-    	return this.ph_price;
+    	return this.phPrice;
     }
-    public void setPh_price(int ph_price)
+    public void setPh_price(int phRide)
     {
-    	this.ph_price = ph_price;
+    	this.phRide = phRide;
     }
-    public int getPh_center()
+    public Integer getPh_center()
     {
-    	return this.ph_center;
+    	return this.phCenter;
     }
-    public void setPh_center(int ph_center)
+    public void setPh_center(int phCenter)
     {
-    	this.ph_center = ph_center;
+    	this.phCenter = phCenter;
     }
-    public int getPh_animal()
+    public Integer getPh_animal()
     {
-    	return this.ph_animal;
+    	return this.phAnimal;
     }
-    public void setPh_animal(int ph_animal)
+    public void setPh_animal(int phAnimal)
     {
-    	this.ph_animal = ph_animal;
+    	this.phAnimal = phAnimal;
     }
-    public int getPh_music()
+    public Integer getPh_music()
     {
-    	return this.ph_music;
+    	return this.phMusic;
     }
-    public void setPh_music(int ph_music)
+    public void setPh_music(int phMusic)
     {
-    	this.ph_music = ph_music;
+    	this.phMusic = phMusic;
     }
-    public int getPh_workstation()
+    public Integer getPh_workstation()
     {
-    	return this.ph_workstation;
+    	return this.phWorkstation;
     }
-    public void setPh_workstation(int ph_workstation)
+    public void setPh_workstation(int phWorkstation)
     {
-    	this.ph_workstation = ph_workstation;
+    	this.phWorkstation = phWorkstation;
     }
-    public int getPh_game()
+    public Integer getPh_game()
     {
-    	return this.ph_game;
+    	return this.phGame;
     }
-    public void setPh_game(int ph_game)
+    public void setPh_game(int phGame)
     {
-    	this.ph_game = ph_game;
+    	this.phGame = phGame;
     }
-    public int getPh_tablegame()
+    public Integer getPh_tablegame()
     {
-    	return this.ph_tablegame;
+    	return this.phTablegame;
     }
-    public void setPh_tablegame(int ph_tablegame)
+    public void setPh_tablegame(int phTablegame)
     {
-    	this.ph_tablegame = ph_tablegame;
+    	this.phTablegame = phTablegame;
     }
-    public int getPh_tourism()
+    public Integer getPh_tourism()
     {
-    	return this.ph_tourism;
+    	return this.phTourism;
     }
-    public void setPh_toursim(int ph_tourism)
+    public void setPh_toursim(int phTourism)
     {
-    	this.ph_tourism = ph_tourism;
+    	this.phTourism = phTourism;
     }
-    public int getPh_health()
+    public Integer getPh_health()
     {
-    	return this.ph_health;
+    	return this.phHealth;
     }
-    public void setPh_health(int ph_health)
+    public void setPh_health(int phHealth)
     {
-    	this.ph_health = ph_health;
+    	this.phHealth = phHealth;
     }
-    public int getPh_food()
+    public Integer getPh_food()
     {
-    	return this.ph_food;
+    	return this.phFood;
     }
-    public void setPh_food(int ph_food)
+    public void setPh_food(int phFood)
     {
-    	this.ph_food = ph_food;
+    	this.phFood = phFood;
     }
-    public int getPh_quiet()
+    public Integer getPh_quiet()
     {
-    	return this.ph_quiet;
+    	return this.phQuiet;
     }
-    public void setPh_quiet(int ph_quiet)
+    public void setPh_quiet(int phQuiet)
     {
-    	this.ph_quiet = ph_quiet;
+    	this.phQuiet = phQuiet;
     }
-    public int getPh_skill()
+    public Integer getPh_skill()
     {
-    	return this.ph_skill;
+    	return this.phSkill;
     }
-    public void setPh_skill(int ph_skill)
+    public void setPh_skill(int phSkill)
     {
-    	this.ph_skill = ph_skill;
+    	this.phSkill = phSkill;
     }
-    public int getPh_call()
+    public Integer getPh_call()
     {
-    	return this.ph_call;
+    	return this.phCall;
     }
-    public void setPh_call(int ph_call)
+    public void setPh_call(int phCall)
     {
-    	this.ph_call = ph_call;
+    	this.phCall = phCall;
     }
-    public int getPh_open()
+    public Integer getPh_open()
     {
-    	return this.ph_open;
+    	return this.phOpen;
     }
-    public void setPh_open(int ph_open)
+    public void setPh_open(int phOpen)
     {
-    	this.ph_open = ph_open;
+    	this.phOpen = phOpen;
     }
+    
 }
 
