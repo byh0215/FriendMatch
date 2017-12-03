@@ -241,6 +241,14 @@
 	    <artifactId>pagehelper</artifactId>
 	    <version>4.2.1</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi</artifactId>
+	    <version>3.10-FINAL</version>
+	</dependency>
+	
   </dependencies>
   
   <build>
