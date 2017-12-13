@@ -13,9 +13,7 @@ import java.io.IOException;
 * @version V1.0 
  */
 public interface ExcelDataService {
-
 	/**
-	 * 
 	* @Title: setUserData
 	* @Description: 将excel中的数据写入到数据库中
 	* @param  excelPath  excel文件路径
@@ -23,5 +21,12 @@ public interface ExcelDataService {
 	* @return boolean    返回类型
 	* @throws
 	 */
-	boolean setUserData(String excelPath,int excelStartCol) throws IOException;
+	boolean setUserData(String excelPath,int excelStartCol,int idIndex) throws IOException;
+	/**
+	 * @Title: getMaxId
+	 * @Description: 得到表最大Id
+	 * @return Integer    返回类型
+	 * @throws
+	 */
+	Integer getMaxId() throws Exception;
 }

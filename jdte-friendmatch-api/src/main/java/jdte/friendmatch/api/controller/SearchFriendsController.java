@@ -1,16 +1,20 @@
 package jdte.friendmatch.api.controller;
 
-import java.io.IOException;
-
+import jdte.friendmatch.api.domain.MatchResult;
+import jdte.friendmatch.api.pojo.UserPO;
+import jdte.friendmatch.api.service.ExcelDataService;
+import jdte.friendmatch.api.service.SearchFriendsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import jdte.friendmatch.api.pojo.UserPO;
-import jdte.friendmatch.api.service.impl.SearchFriendsServiceImpl;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
 * @ClassName: SearchFriendsController
@@ -31,18 +35,22 @@ public class SearchFriendsController {
 	* @version V1.0 
 	 * @throws IOException 
 	 */
-	//返回参数统一为jsonresponse，需要自己实现
+	@Autowired
+	private SearchFriendsService searchFriendsService;
+	@Autowired
+	private ExcelDataService excelDataService;
+
 	@RequestMapping(value="/searchfriends", method = RequestMethod.GET)
-	public  @ResponseBody UserPO searchFriendService(@RequestParam(value="telphone") String telphone) throws IOException {
-		SearchFriendsServiceImpl sfs=new SearchFriendsServiceImpl();
-		UserPO userpo=null;
+	public  @ResponseBody List<MatchResult> searchFriendService(@RequestParam(value="telphone") String telphone) throws IOException {
+		List<MatchResult> ansList= new ArrayList<MatchResult>();
 		try {
-			userpo= sfs.SearchFriendsData(telphone);
+			Integer idIndex = excelDataService.getMaxId();
+			excelDataService.setUserData("C://aaa.xls",7,idIndex);
+			ansList= searchFriendsService.SearchFriendsData(telphone);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return userpo;
+		return ansList;
 	}
 	
 }

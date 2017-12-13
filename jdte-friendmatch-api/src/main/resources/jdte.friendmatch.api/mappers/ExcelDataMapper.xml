@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
- "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
- <mapper namespace="jdte.friendmatch.api.dao.ExcelDataDao">
-    
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jdte.friendmatch.api.mapper.ExcelDataMapper" >
+	<resultMap id="BaseResultMap" type="jdte.friendmatch.api.pojo.UserPO" >
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="BATCH_ID" property="batchId" jdbcType="INTEGER" />
+		<result column="ORDER_ID" property="orderId" jdbcType="BIGINT" />
+		<result column="CNODE_ARRIVAL_TIME" property="cnodeArrivalTime" />
+		<result column="CNODE_ORDER_TIME" property="cnodeOrderTime" />
+		<result column="CBATCH_BEGIN_TIME" property="cbatchBeginTime" />
+		<result column="CNODE_SEQUENCE" property="cnodeSequence" jdbcType="INTEGER" />
+		<result column="BEGIN_TIME" property="beginTime" />
+		<result column="END_TIME" property="endTime" />
+		<result column="PHARMACY_ID" property="pharmacyId" jdbcType="INTEGER" />
+	</resultMap>
+
     <sql id="all_personal_habit_column">
     	PH_NAME,PH_SEX,PU_TIMETAG,PU_AREA,PH_DIFFSEX,
     	PH_SINGLE,PH_SAMEROOM,PH_SUBWAY,PH_RIDE,PH_PRICE,

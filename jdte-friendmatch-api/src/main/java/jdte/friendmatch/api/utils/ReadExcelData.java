@@ -36,25 +36,24 @@ public class ReadExcelData {
 	* @return List<UserPO>  返回UserPO的list集合
 	* @throws IOException  文件IO异常
 	 */
-	public static List<UserPO> readExcelData(String excelPath,int excelStartCol) throws IOException{
+	public static List<UserPO> readExcelData(String excelPath,int excelStartCol,int idIndex) throws IOException{
 		inputStream=new FileInputStream(excelPath);
 		hssfWorkbook=new HSSFWorkbook(inputStream);
 		List<UserPO> listUserPO=new ArrayList<>();
-		System.out.println(hssfWorkbook.getNumberOfSheets());
-		for(int sheetNum=0;sheetNum<hssfWorkbook.getNumberOfSheets();sheetNum++){
-			HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(sheetNum);
-			if(hssfSheet==null){
+//		System.out.println(hssfWorkbook.getNumberOfSheets());
+		HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(1);
+		int maxRow=hssfSheet.getLastRowNum();
+		if(hssfSheet==null || maxRow==idIndex){
+			return listUserPO;
+		}
+		//从第7列开始获取有用信息
+		for(int rowNum = idIndex;rowNum <= maxRow; rowNum ++){
+			HSSFRow hssfRow = hssfSheet.getRow(rowNum);
+			if(hssfRow == null){
 				continue;
 			}
-			//从第7列开始获取有用信息
-			for(int rowNum=1;rowNum<=hssfSheet.getLastRowNum();rowNum++){
-				HSSFRow hssfRow=hssfSheet.getRow(rowNum);
-				if(hssfRow==null){
-					continue;
-				}
-				UserPO userPO=transfSheetRow2UserPO(hssfRow,excelStartCol);
-				listUserPO.add(userPO);
-			}
+			UserPO userPO=transfSheetRow2UserPO(hssfRow,excelStartCol);
+			listUserPO.add(userPO);
 		}
 		return listUserPO;
 	}
@@ -69,6 +68,8 @@ public class ReadExcelData {
 	 */
 	private static UserPO transfSheetRow2UserPO(HSSFRow hssfRow,int excelStartCol){
 		UserPO userPO=new UserPO();
+		//0、id
+		userPO.setPhId(transfCell2Integer(hssfRow,1));
 		//1、姓名
 		userPO.setPhName(transfCell2String(hssfRow,excelStartCol++));
 		//2、性别

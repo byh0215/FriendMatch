@@ -1,8 +1,10 @@
 package jdte.friendmatch.api.service;
 
 import java.io.IOException;
+import java.sql.SQLDataException;
 import java.util.List;
 
+import jdte.friendmatch.api.domain.MatchResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jdte.friendmatch.api.entity.PersonalHabitEntity;
@@ -29,5 +31,5 @@ public interface SearchFriendsService {
 	* @return List    返回查询数据
 	* @throws
 	 */
-	UserPO SearchFriendsData(String username) throws IOException;
+	List<MatchResult> SearchFriendsData(String username) throws Exception;
 }
