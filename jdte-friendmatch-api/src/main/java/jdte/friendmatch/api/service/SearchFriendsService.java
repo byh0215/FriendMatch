@@ -1,14 +1,8 @@
 package jdte.friendmatch.api.service;
 
-import java.io.IOException;
-import java.sql.SQLDataException;
-import java.util.List;
-
 import jdte.friendmatch.api.domain.MatchResult;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import jdte.friendmatch.api.entity.PersonalHabitEntity;
-import jdte.friendmatch.api.pojo.UserPO;
+import java.util.List;
 
 
 

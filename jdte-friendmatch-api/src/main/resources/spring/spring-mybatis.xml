@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"  
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd
-                        http://www.springframework.org/schema/mvc
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 						http://www.springframework.org/schema/tx 
-				        http://www.springframework.org/schema/tx/spring-tx.xsd      
-				        http://www.springframework.org/schema/aop
-				        http://www.springframework.org/schema/aop/spring-aop.xsd">
+				        http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!-- 自动扫描  除去web层注解，web层注解在mvc配置中扫描 -->  
     <context:component-scan base-package="jdte.friendmatch.api">
 		<context:exclude-filter type="annotation"
@@ -52,10 +45,11 @@
 
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="configLocation" value="classpath:jdte.friendmatch.api/mybatis-cfg.xml"></property>
+
+        <property name="configLocation" value="classpath:jdte/friendmatch/api/mybatis-cfg.xml"></property>
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:*.xml"></property>
+        <property name="mapperLocations" value="classpath:jdte/friendmatch/api/mappers/*.xml"></property>
 
     </bean>
 

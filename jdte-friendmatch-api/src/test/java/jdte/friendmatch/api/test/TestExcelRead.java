@@ -25,7 +25,7 @@ public class TestExcelRead {
 		String excelPath="D:\\test.xls";
 		List<UserPO> listUserPO=new ArrayList<>();
 		try {
-			listUserPO=excelData.readExcelData(excelPath, 6);
+			listUserPO=excelData.readExcelData(excelPath, 6,1);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
