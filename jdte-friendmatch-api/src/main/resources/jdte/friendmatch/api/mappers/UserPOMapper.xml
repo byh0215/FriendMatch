@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jdte.friendmatch.api.mapper.UserPOMapper" >
+    <resultMap id="BaseResultMap" type="jdte.friendmatch.api.pojo.UserPO" >
+    <id column="ph_id" property="phId" jdbcType="INTEGER" />
+    <result column="ph_telphone" property="phTelphone" jdbcType="VARCHAR" />
+    <result column="ph_name" property="phName" jdbcType="VARCHAR" />
+    <result column="ph_sex" property="phSex" jdbcType="INTEGER" />
+    <result column="ph_timeTag" property="phTimetag" jdbcType="INTEGER" />
+    <result column="ph_area" property="phArea" jdbcType="INTEGER" />
+    <result column="ph_diffSex" property="phDiffsex" jdbcType="INTEGER" />
+    <result column="ph_single" property="phSingle" jdbcType="INTEGER" />
+    <result column="ph_sameRoom" property="phSameroom" jdbcType="INTEGER" />
+    <result column="ph_subway" property="phSubway" jdbcType="INTEGER" />
+    <result column="ph_ride" property="phRide" jdbcType="INTEGER" />
+    <result column="ph_price" property="phPrice" jdbcType="INTEGER" />
+    <result column="ph_center" property="phCenter" jdbcType="INTEGER" />
+    <result column="ph_animal" property="phAnimal" jdbcType="INTEGER" />
+    <result column="ph_music" property="phMusic" jdbcType="INTEGER" />
+    <result column="ph_workStation" property="phWorkstation" jdbcType="INTEGER" />
+    <result column="ph_game" property="phGame" jdbcType="INTEGER" />
+    <result column="ph_tableGame" property="phTablegame" jdbcType="INTEGER" />
+    <result column="ph_tourism" property="phTourism" jdbcType="INTEGER" />
+    <result column="ph_health" property="phHealth" jdbcType="INTEGER" />
+    <result column="ph_food" property="phFood" jdbcType="INTEGER" />
+    <result column="ph_quiet" property="phQuiet" jdbcType="INTEGER" />
+    <result column="ph_skill" property="phSkill" jdbcType="VARCHAR" />
+    <result column="ph_open" property="phOpen" jdbcType="INTEGER" />
+  </resultMap>
+    <sql id="Base_Column_List" >
+    <!--建议大写  ph_id, -->
+        ph_id,ph_telphone, ph_name, ph_sex, ph_timeTag, ph_area, ph_diffSex, ph_single,
+        ph_sameRoom, ph_subway, ph_ride, ph_price, ph_center, ph_animal, ph_music, ph_workStation,
+        ph_game, ph_tableGame, ph_tourism, ph_health, ph_food, ph_quiet, ph_skill,ph_open
+    </sql>
+    <select id="selectByTelphone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from personal_habit
+        where ph_telphone = #{ph_telphone,jdbcType=VARCHAR}
+    </select>
+    <select id="getMaxId" resultMap="BaseResultMap" >
+        select MAX(ph_id)
+        from personal_habit
+    </select>
+    <insert id="setUserDao" parameterType="jdte.friendmatch.api.pojo.UserPO">
+<!--        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>-->
+        INSERT INTO PERSONAL_HABIT(<include refid="Base_Column_List"/>)
+        VALUES (#{phId},#{phName},#{phTelphone},#{phSex},#{phTimetag},#{phArea},#{phDiffsex},#{phSingle},
+        #{phSameroom},#{phSubway},#{phRide},#{phPrice},#{phCenter},#{phAnimal},
+        #{phMusic},#{phWorkstation},#{phGame},#{phTablegame},#{phTourism},#{phHealth},
+        #{phFood},#{phQuiet},#{phSkill},#{phQQWechar},#{phJob},#{phOpen})
+    </insert>
+ </mapper>
