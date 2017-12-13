@@ -18,8 +18,8 @@ public class MatchResult implements Serializable{
 	private String name;             //用户姓名
 	private String skill;		   	 //个人技能
 	private String phTelphone;  	  //手机号
-	private String call;			   //联系方式
-	private float value;			   //匹配度
+	private String call;			   //联系方式qqwechat
+	private double value;			   //匹配度
 
 	@Override
 	public String toString() {
@@ -55,11 +55,11 @@ public class MatchResult implements Serializable{
 		this.call = call;
 	}
 
-	public float getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(float value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 

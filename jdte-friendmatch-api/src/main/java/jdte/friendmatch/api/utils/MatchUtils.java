@@ -11,51 +11,58 @@ public class MatchUtils {
   public static List<MatchResult> getFriend(UserPO majorUser,List<UserPO> matchList){
 	  List<MatchResult> ansList=new ArrayList<>();
 	  for (UserPO aUser:matchList) {
-		  if((100.0-getCharacteristic(majorUser,aUser))>75.0){
+		  double adaptValue=getCharacteristic(majorUser,aUser);
+		  if (aUser.getPhOpen()!=0)continue;
+		  if((100.0-adaptValue)>75.0){
 			  MatchResult res=new MatchResult();
 			  res.setName(aUser.getPhName());
-			  res.setCall(aUser.);
-			  res.setPhTelphone(aUser);
+			  res.setPhTelphone(aUser.getPhTelphone());
+			  res.setSkill(aUser.getPhSkill());
+			  res.setCall(aUser.getPhQQWechar());
+			  res.setValue(adaptValue);
+			  ansList.add(res);
 		  }
 	  }
 	  return ansList;
   }
   public static double getCharacteristic(UserPO u1,UserPO u2){
 	  double res=0.0;
-	  if(tm1.getDiffSex()+tm2.getDiffSex()==2.0){
-		  res = Math.abs(tm1.getSex()-tm2.getSex())+
-				  20*Math.abs(tm1.getTimeTag()-tm2.getTimeTag())+
-				  5*Math.abs(tm1.getArea()-tm2.getArea())+
-				  3*Math.abs(tm1.getCenter()-tm2.getCenter())+
-				  3*Math.abs(tm1.getTrain()-tm2.getTrain())+
-				  3*Math.abs(tm1.getRide()-tm2.getRide())+
-				  15*Math.abs(tm1.getPrice()-tm2.getPrice())+
-				  10*Math.abs(tm1.getMusic()-tm2.getMusic())+
-				  10*Math.abs(tm1.getAnimal()-tm2.getAnimal())+
-				  5*Math.abs(tm1.getWorkStation()-tm2.getWorkStation())+
-				  5*Math.abs(tm1.getGame()-tm2.getGame())+
-				  5*Math.abs(tm1.getTableGame()-tm2.getTableGame())+
-				  5*Math.abs(tm1.getTourism()-tm2.getTourism())+
-				  5*Math.abs(tm1.getHealth()-tm2.getHealth())+
-				  25*Math.abs(tm1.getQuiet()-tm2.getQuiet());
-	  }else{
-		  res = Math.abs(tm1.getSex()-tm2.getSex())+
-				  20*Math.abs(tm1.getTimeTag()-tm2.getTimeTag())+
-				  5*Math.abs(tm1.getArea()-tm2.getArea())+
-				  61*Math.abs(tm1.getSex()-tm2.getSex())+
-				  3*Math.abs(tm1.getCenter()-tm2.getCenter())+
-				  5*Math.abs(tm1.getTrain()-tm2.getTrain())+
-				  5*Math.abs(tm1.getRide()-tm2.getRide())+
-				  15*Math.abs(tm1.getPrice()-tm2.getPrice())+
-				  10*Math.abs(tm1.getMusic()-tm2.getMusic())+
-				  10*Math.abs(tm1.getAnimal()-tm2.getAnimal())+
-				  5*Math.abs(tm1.getWorkStation()-tm2.getWorkStation())+
-				  5*Math.abs(tm1.getGame()-tm2.getGame())+
-				  5*Math.abs(tm1.getTableGame()-tm2.getTableGame())+
-				  5*Math.abs(tm1.getTourism()-tm2.getTourism())+
-				  5*Math.abs(tm1.getHealth()-tm2.getHealth())+
-				  25*Math.abs(tm1.getQuiet()-tm2.getQuiet());
+	  if(u1.getPhDiffsex()!=u2.getPhDiffsex()||u1.getPhTimetag()!=u2.getPhTimetag()||u1.getPhSameroom()!=u2.getPhSameroom()){
+	  	return 40.0;
 	  }
+	  if (u1.getPhDiffsex()+u2.getPhDiffsex()==2.0){
+		  res = Math.abs(u1.getPhSex()-u2.getPhSex())+
+				  4*Math.abs(u1.getPhSubway()-u2.getPhSubway())+
+				  2*Math.abs(u1.getPhRide()-u2.getPhRide())+
+				  10*Math.abs(u1.getPhPrice()-u2.getPhPrice())+
+				  2*Math.abs(u1.getPhCenter()-u2.getPhCenter())+
+				  4*Math.abs(u1.getPhJob()-u2.getPhJob())+
+				  10*Math.abs(u1.getPhAnimal()-u2.getPhAnimal())+
+				  10*Math.abs(u1.getPhMusic()-u2.getPhMusic())+
+				  4*Math.abs(u1.getPhGame()-u2.getPhGame())+
+				  4*Math.abs(u1.getPhTablegame()-u2.getPhTablegame())+
+				  4*Math.abs(u1.getPhTourism()-u2.getPhTourism())+
+				  4*Math.abs(u1.getPhHealth()-u2.getPhHealth())+
+				  4*Math.abs(u1.getPhFood()-u2.getPhFood())+
+				  20*Math.abs(u1.getPhQuiet()-u2.getPhQuiet());
+	  }else{
+		  res = 25*Math.abs(u1.getPhSex()-u2.getPhSex())+
+				  4*Math.abs(u1.getPhSubway()-u2.getPhSubway())+
+				  2*Math.abs(u1.getPhRide()-u2.getPhRide())+
+				  10*Math.abs(u1.getPhPrice()-u2.getPhPrice())+
+				  2*Math.abs(u1.getPhCenter()-u2.getPhCenter())+
+				  4*Math.abs(u1.getPhJob()-u2.getPhJob())+
+				  10*Math.abs(u1.getPhAnimal()-u2.getPhAnimal())+
+				  10*Math.abs(u1.getPhMusic()-u2.getPhMusic())+
+				  4*Math.abs(u1.getPhGame()-u2.getPhGame())+
+				  4*Math.abs(u1.getPhTablegame()-u2.getPhTablegame())+
+				  4*Math.abs(u1.getPhTourism()-u2.getPhTourism())+
+				  4*Math.abs(u1.getPhHealth()-u2.getPhHealth())+
+				  4*Math.abs(u1.getPhFood()-u2.getPhFood())+
+				  20*Math.abs(u1.getPhQuiet()-u2.getPhQuiet());
+	  }
+
+
 	  return res;
   }
 } 

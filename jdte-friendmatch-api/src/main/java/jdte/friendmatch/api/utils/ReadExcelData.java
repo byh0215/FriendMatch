@@ -83,6 +83,8 @@ public class ReadExcelData {
 		userPO.setPhDiffsex(transfCell2Integer(hssfRow,excelStartCol++));
 		//7、接受合租者有对象
 		userPO.setPhSingle(transfCell2Integer(hssfRow,excelStartCol++));
+		//7.1、接受合租一屋
+		userPO.setPhSameroom(transfCell2Integer(hssfRow,excelStartCol++));
 		//8、接受地铁15分钟内
 		userPO.setPhSubway(transfCell2Integer(hssfRow,excelStartCol++));
 		//9、接受步行/骑行15分钟内
@@ -105,6 +107,8 @@ public class ReadExcelData {
 		userPO.setPhTourism(transfCell2Integer(hssfRow, excelStartCol++));
 		//18、是否喜欢健身	
 		userPO.setPhHealth(transfCell2Integer(hssfRow, excelStartCol++));
+		//18.1、chihuo
+		userPO.setPhFood(transfCell2Integer(hssfRow,excelStartCol++));
 		//19、喜欢安静	
 		userPO.setPhQuiet(transfCell2Integer(hssfRow, excelStartCol++));
 		//20、个人技能（使用,隔开）	

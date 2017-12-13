@@ -47,7 +47,8 @@ public class SearchFriendsController {
 		List<MatchResult> ansList= new ArrayList<MatchResult>();
 		try {
 			Integer idIndex = excelDataService.getMaxId();
-			excelDataService.setUserData("C://aaa.xls",6,idIndex);
+			//上线前修改此处
+			excelDataService.setUserData("C://aaa.xls",	6,idIndex);
 			ansList= searchFriendsService.SearchFriendsData(telphone);
 		} catch (Exception e) {
 			logger.error(e.toString());
