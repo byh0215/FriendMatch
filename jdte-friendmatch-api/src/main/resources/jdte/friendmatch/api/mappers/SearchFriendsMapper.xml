@@ -26,13 +26,13 @@
     <result column="ph_food" property="phFood" jdbcType="INTEGER" />
     <result column="ph_quiet" property="phQuiet" jdbcType="INTEGER" />
     <result column="ph_skill" property="phSkill" jdbcType="VARCHAR" />
-    <result column="ph_call" property="phCall" jdbcType="VARCHAR" />
+    <result column="ph_qqwechar" property="phQQWechar" jdbcType="VARCHAR" />
     <result column="ph_open" property="phOpen" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     ph_id, ph_telphone, ph_name, ph_sex, ph_timeTag, ph_area, ph_diffSex, ph_single, 
     ph_sameRoom, ph_subway, ph_ride, ph_price, ph_center, ph_animal, ph_music, ph_workStation, 
-    ph_game, ph_tableGame, ph_tourism, ph_health, ph_food, ph_quiet, ph_skill, ph_call, 
+    ph_game, ph_tableGame, ph_tourism, ph_health, ph_food, ph_quiet, ph_skill, ph_qqwechar, 
     ph_open
   </sql>
    <select id="selectByTelphone" resultMap="BaseResultMap" parameterType="java.lang.String" >
