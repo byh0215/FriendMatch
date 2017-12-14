@@ -36,7 +36,7 @@
 	  	spring的配置文件一般要跟springmvc的配置文件分开  -->
 	 <context-param>
 	  	<param-name>contextConfigLocation</param-name>
-	  	<param-value>classpath:spring-mybatis.xml</param-value>
+	  	<param-value>classpath:spring/spring-mybatis.xml</param-value>
 	 </context-param>
      
     <!-- 5.配置springmvc的DispatcherServlet 
@@ -49,7 +49,7 @@
  			[servlet-name]-servlet.xml(springmvc-serlvet.xml) -->
  		<init-param>
  			<param-name>contextConfigLocation</param-name>
- 			<param-value>classpath:spring-mvc.xml</param-value>
+ 			<param-value>classpath:spring/spring-mvc.xml</param-value>
  		</init-param>
         <load-on-startup>1</load-on-startup>
 	</servlet>

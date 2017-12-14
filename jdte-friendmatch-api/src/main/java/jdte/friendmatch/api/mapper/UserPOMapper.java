@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2017年12月6日 下午3:49:19
  * @version V1.0 
  */
-@Repository("userPOMapper")
+//@Repository("userPOMapper")
 public interface UserPOMapper {
 
     /**
