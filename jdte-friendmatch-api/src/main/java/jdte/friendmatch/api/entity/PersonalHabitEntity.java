@@ -1,6 +1,7 @@
 package jdte.friendmatch.api.entity;
 
 public class PersonalHabitEntity {
+    
     private Integer phId;
 
     private String phName;

@@ -39,19 +39,30 @@ public class SearchFriendsController {
 	 */
 	@Autowired
 	private SearchFriendsService searchFriendsService;
+
 	@Autowired
 	private ExcelDataService excelDataService;
+
 	private static final Logger logger = LoggerFactory.getLogger(SearchFriendsController.class);
+
+	/**
+	 * 搜索匹配
+	 * @param telphone
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value="/searchfriends", method = RequestMethod.GET)
-	public  @ResponseBody List<MatchResult> searchFriendService(@RequestParam(value="telphone") String telphone) throws IOException {
-		List<MatchResult> ansList= new ArrayList<MatchResult>();
+    @ResponseBody
+	public List<MatchResult> searchFriend(@RequestParam(value="telphone") String telphone)
+			throws IOException {
+		List<MatchResult> ansList = new ArrayList<MatchResult>();
 		try {
 			Integer idIndex = excelDataService.getMaxId();
 			//上线前修改此处
 			excelDataService.setUserData("C://aaa.xls",	6,idIndex);
 			ansList= searchFriendsService.SearchFriendsData(telphone);
 		} catch (Exception e) {
-			logger.error(e.toString());
+			logger.error("匹配出错, 错误信息为: {}", e.toString());
 		}
 		return ansList;
 	}

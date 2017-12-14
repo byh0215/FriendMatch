@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BaseController {
 
 	/**
-	 * ��¼����
+	 * 首页跳转
 	 * @return
 	 */
 	@RequestMapping(value = {"/", "login"})

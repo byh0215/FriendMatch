@@ -20,10 +20,7 @@ public class UserPO implements Serializable{
 	private static final long serialVersionUID = 3570065877578584274L;
 	
 	private Integer phId;			   //数据库主键
-
-
-
-	private String phTelphone;          //用户电话
+	private String phTelphone;         //用户电话
 	private String phName;             //用户姓名
 	private Integer phSex;             //用户性别
 	private Integer phTimetag;   	   //入职时间

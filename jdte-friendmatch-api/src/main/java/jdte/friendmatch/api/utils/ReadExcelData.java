@@ -35,23 +35,31 @@ public class ReadExcelData {
 	* @return List<UserPO>  返回UserPO的list集合
 	* @throws IOException  文件IO异常
 	 */
-	public static List<UserPO> readExcelData(String excelPath,int excelStartCol,int idIndex) throws IOException{
-		inputStream=new FileInputStream(excelPath);
-		hssfWorkbook=new HSSFWorkbook(inputStream);
-		List<UserPO> listUserPO=new ArrayList<>();
-//		System.out.println(hssfWorkbook.getNumberOfSheets());
+	public static List<UserPO> readExcelData(String excelPath, int excelStartCol, int idIndex)
+			throws IOException {
+
+		inputStream = new FileInputStream(excelPath);
+
+		hssfWorkbook = new HSSFWorkbook(inputStream);
+
+		List<UserPO> listUserPO = new ArrayList<>();
+
 		HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(1);
+
 		int maxRow=hssfSheet.getLastRowNum();
-		if(hssfSheet==null || maxRow==idIndex){
+
+		if(hssfSheet==null || maxRow==idIndex)
+		{
 			return listUserPO;
 		}
 		//从第7列开始获取有用信息
-		for(int rowNum = idIndex;rowNum <= maxRow; rowNum ++){
+		for(int rowNum = idIndex; rowNum <= maxRow; rowNum ++)
+		{
 			HSSFRow hssfRow = hssfSheet.getRow(rowNum);
-			if(hssfRow == null){
+			if(hssfRow == null) {
 				continue;
 			}
-			UserPO userPO=transfSheetRow2UserPO(hssfRow,excelStartCol);
+			UserPO userPO = transfSheetRow2UserPO(hssfRow,excelStartCol);
 			listUserPO.add(userPO);
 		}
 		return listUserPO;

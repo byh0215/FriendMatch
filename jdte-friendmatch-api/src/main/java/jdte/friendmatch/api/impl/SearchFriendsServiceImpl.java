@@ -12,11 +12,17 @@ import java.util.List;
 
 @Service("searchFriendService")
 public class SearchFriendsServiceImpl implements SearchFriendsService{
+
 	@Autowired
 	private UserPOMapper userPOMapper;
+
+    /**
+     * 根据手机号匹配朋友
+     * @param telphone
+     * @return
+     */
 	@Override
 	public List<MatchResult> SearchFriendsData(String telphone){
-		List<MatchResult> searchList = userPOMapper.selectByTelphone(telphone);
-		return searchList;
+        return userPOMapper.selectByTelphone(telphone);
 	}
 }
