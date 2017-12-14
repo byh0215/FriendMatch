@@ -64,6 +64,15 @@
 		  -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.html</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>
      
      <!-- 6.配置jsp标签 -->
 <!--      <jsp-config> -->

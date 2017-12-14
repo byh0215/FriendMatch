@@ -10,9 +10,13 @@ public class BaseController {
 	 * 首页跳转
 	 * @return
 	 */
-	@RequestMapping(value = {"/", "login"})
+	@RequestMapping(value = {"login"})
 	public String login() {
 		return "login";
+	}
+	@RequestMapping(value = {"/", "index"})
+	public String index() {
+		return "index";
 	}
 	
 }

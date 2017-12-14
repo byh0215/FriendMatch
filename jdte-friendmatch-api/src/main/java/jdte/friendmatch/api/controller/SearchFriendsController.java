@@ -59,7 +59,7 @@ public class SearchFriendsController {
 		try {
 			Integer idIndex = excelDataService.getMaxId();
 			//上线前修改此处
-			excelDataService.setUserData("C://aaa.xls",	6,idIndex);
+			excelDataService.setUserData("/excel/aaa.xls",	6,idIndex);
 			ansList= searchFriendsService.SearchFriendsData(telphone);
 		} catch (Exception e) {
 			logger.error("匹配出错, 错误信息为: {}", e.toString());
