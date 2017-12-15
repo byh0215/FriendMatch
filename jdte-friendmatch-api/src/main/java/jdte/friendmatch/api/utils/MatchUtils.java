@@ -13,6 +13,7 @@ public class MatchUtils {
 	  for (UserPO aUser:matchList) {
 		  double adaptValue=getCharacteristic(majorUser,aUser);
 		  if (aUser.getPhOpen()!=0)continue;
+		  if (aUser.getPhTelphone().equals(majorUser.getPhTelphone()))continue;
 		  if((100.0-adaptValue) > 60.0){
 			  MatchResult res=new MatchResult();
 			  res.setName(aUser.getPhName());
