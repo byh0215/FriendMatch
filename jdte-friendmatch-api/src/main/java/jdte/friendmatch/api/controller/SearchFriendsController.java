@@ -4,6 +4,7 @@ import jdte.friendmatch.api.domain.MatchResult;
 import jdte.friendmatch.api.pojo.UserPO;
 import jdte.friendmatch.api.service.ExcelDataService;
 import jdte.friendmatch.api.service.SearchFriendsService;
+import org.apache.poi.util.SystemOutLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,15 +57,25 @@ public class SearchFriendsController {
     @ResponseBody
 	public List<MatchResult> searchFriend(@RequestParam(value="telphone") String telphone)
 			throws IOException {
+		System.out.println("lalalala");
 		List<MatchResult> ansList = new ArrayList<MatchResult>();
 		try {
+			System.out.println("1");
 			Integer idIndex = excelDataService.getMaxId();
+			if(idIndex==0){
+				idIndex=2;
+			}
+			System.out.println("2");
 			//上线前修改此处
-			excelDataService.setUserData("/excel/aaa.xls",	6,idIndex);
+//			/excel/aaa.xls
+			Boolean aaa=excelDataService.setUserData("C:"+ File.separator+File.separator + "aaa.xls",	6,idIndex);
+			System.out.println("3"+aaa.toString());
 			ansList= searchFriendsService.SearchFriendsData(telphone);
+			System.out.println("4");
 		} catch (Exception e) {
 			logger.error("匹配出错, 错误信息为: {}", e.toString());
 		}
+
 		return ansList;
 	}
 	

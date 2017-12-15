@@ -5,11 +5,10 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,24 +36,29 @@ public class ReadExcelData {
 	 */
 	public static List<UserPO> readExcelData(String excelPath, int excelStartCol, int idIndex)
 			throws IOException {
-
-		inputStream = new FileInputStream(excelPath);
-
-		hssfWorkbook = new HSSFWorkbook(inputStream);
+		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
+		FileInputStream fileInputStream = new FileInputStream(excelPath);
+		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
+		BufferedInputStream bufferedInputStream = new BufferedInputStream( fileInputStream);
+		POIFSFileSystem fileSystem = new POIFSFileSystem(bufferedInputStream);
+		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
+		hssfWorkbook = new HSSFWorkbook(fileSystem);
 
 		List<UserPO> listUserPO = new ArrayList<>();
 
-		HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(1);
-
+		HSSFSheet hssfSheet=hssfWorkbook.getSheet("Sheet1");
+		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
 		int maxRow=hssfSheet.getLastRowNum();
 
 		if(hssfSheet==null || maxRow==idIndex)
 		{
 			return listUserPO;
 		}
+		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
 		//从第7列开始获取有用信息
 		for(int rowNum = idIndex; rowNum <= maxRow; rowNum ++)
 		{
+			System.out.println("ent for");
 			HSSFRow hssfRow = hssfSheet.getRow(rowNum);
 			if(hssfRow == null) {
 				continue;
@@ -62,6 +66,7 @@ public class ReadExcelData {
 			UserPO userPO = transfSheetRow2UserPO(hssfRow,excelStartCol);
 			listUserPO.add(userPO);
 		}
+		System.out.println(listUserPO.size());
 		return listUserPO;
 	}
 

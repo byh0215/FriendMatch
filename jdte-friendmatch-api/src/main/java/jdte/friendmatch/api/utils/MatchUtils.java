@@ -13,7 +13,7 @@ public class MatchUtils {
 	  for (UserPO aUser:matchList) {
 		  double adaptValue=getCharacteristic(majorUser,aUser);
 		  if (aUser.getPhOpen()!=0)continue;
-		  if((100.0-adaptValue)>75.0){
+		  if((100.0-adaptValue) > 60.0){
 			  MatchResult res=new MatchResult();
 			  res.setName(aUser.getPhName());
 			  res.setPhTelphone(aUser.getPhTelphone());
@@ -46,7 +46,7 @@ public class MatchUtils {
 				  4*Math.abs(u1.getPhFood()-u2.getPhFood())+
 				  20*Math.abs(u1.getPhQuiet()-u2.getPhQuiet());
 	  }else{
-		  res = 25*Math.abs(u1.getPhSex()-u2.getPhSex())+
+		  res = 40*Math.abs(u1.getPhSex()-u2.getPhSex())+
 				  4*Math.abs(u1.getPhSubway()-u2.getPhSubway())+
 				  2*Math.abs(u1.getPhRide()-u2.getPhRide())+
 				  10*Math.abs(u1.getPhPrice()-u2.getPhPrice())+

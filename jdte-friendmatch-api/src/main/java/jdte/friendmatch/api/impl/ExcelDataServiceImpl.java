@@ -27,6 +27,7 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 		List<UserPO> userPOList = null;
 		try {
 			userPOList = ReadExcelData.readExcelData(excelPath,excelStartCol,idIndex);
+			System.out.println(userPOList.size());
 		} catch (IOException e) {
 			logger.error("ExcelDataServiceImpl.setUserData导入出错, 错误信息为: {}",
 					e.toString());
