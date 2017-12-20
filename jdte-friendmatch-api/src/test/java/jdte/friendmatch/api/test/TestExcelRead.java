@@ -22,7 +22,7 @@ public class TestExcelRead {
 	@Test
 	public void testReadExcel(){
 		ReadExcelData excelData =new ReadExcelData();
-		String excelPath="D:\\test.xls";
+		String excelPath="D:\\aaa.xls";
 		List<UserPO> listUserPO=new ArrayList<>();
 		try {
 			listUserPO=excelData.readExcelData(excelPath, 6,1);

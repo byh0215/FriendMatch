@@ -52,10 +52,6 @@
         from personal_habit
     </select>
 
-    <!--        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
-                SELECT LAST_INSERT_ID() as id
-            </selectKey>-->
-
     <insert id="setUserData" parameterType="java.util.List">
         INSERT INTO PERSONAL_HABIT
         (

@@ -1,16 +1,19 @@
 package jdte.friendmatch.api.utils;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import jdte.friendmatch.api.pojo.UserPO;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 
@@ -24,7 +27,7 @@ public class ReadExcelData {
 
 	private static InputStream inputStream;
 	private static HSSFWorkbook hssfWorkbook;
-	
+
 	/**
 	 * 
 	* @Title: readExcelData
@@ -34,39 +37,27 @@ public class ReadExcelData {
 	* @return List<UserPO>  返回UserPO的list集合
 	* @throws IOException  文件IO异常
 	 */
-	public static List<UserPO> readExcelData(String excelPath, int excelStartCol, int idIndex)
-			throws IOException {
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
-		FileInputStream fileInputStream = new FileInputStream(excelPath);
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
-		BufferedInputStream bufferedInputStream = new BufferedInputStream( fileInputStream);
-		POIFSFileSystem fileSystem = new POIFSFileSystem(bufferedInputStream);
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
-		hssfWorkbook = new HSSFWorkbook(fileSystem);
-
-		List<UserPO> listUserPO = new ArrayList<>();
-
-		HSSFSheet hssfSheet=hssfWorkbook.getSheet("Sheet1");
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
-		int maxRow=hssfSheet.getLastRowNum();
-
-		if(hssfSheet==null || maxRow==idIndex)
-		{
-			return listUserPO;
-		}
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
-		//从第7列开始获取有用信息
-		for(int rowNum = idIndex; rowNum <= maxRow; rowNum ++)
-		{
-			System.out.println("ent for");
-			HSSFRow hssfRow = hssfSheet.getRow(rowNum);
-			if(hssfRow == null) {
+	//idIndex 数据库每次更新只更新新添加的数据，通过id来标识
+	public static List<UserPO> readExcelData(String excelPath,int excelStartCol,int idIndex) throws IOException{
+		inputStream=new FileInputStream(excelPath);
+		hssfWorkbook=new HSSFWorkbook(inputStream);
+		List<UserPO> listUserPO=new ArrayList<>();
+		System.out.println(hssfWorkbook.getNumberOfSheets());
+		for(int sheetNum=0;sheetNum<hssfWorkbook.getNumberOfSheets();sheetNum++){
+			HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(sheetNum);
+			if(hssfSheet==null){
 				continue;
 			}
-			UserPO userPO = transfSheetRow2UserPO(hssfRow,excelStartCol);
-			listUserPO.add(userPO);
+			//从第7列开始获取有用信息
+			for(int rowNum=idIndex;rowNum<=hssfSheet.getLastRowNum();rowNum++){
+				HSSFRow hssfRow=hssfSheet.getRow(rowNum);
+				if(hssfRow==null){
+					continue;
+				}
+				UserPO userPO=transfSheetRow2UserPO(hssfRow,excelStartCol);
+				listUserPO.add(userPO);
+			}
 		}
-		System.out.println(listUserPO.size());
 		return listUserPO;
 	}
 
@@ -80,8 +71,6 @@ public class ReadExcelData {
 	 */
 	private static UserPO transfSheetRow2UserPO(HSSFRow hssfRow,int excelStartCol){
 		UserPO userPO=new UserPO();
-		//0、id
-		userPO.setPhId(transfCell2Integer(hssfRow,1));
 		//1、姓名
 		userPO.setPhName(transfCell2String(hssfRow,excelStartCol++));
 		//2、性别
@@ -96,7 +85,6 @@ public class ReadExcelData {
 		userPO.setPhDiffsex(transfCell2Integer(hssfRow,excelStartCol++));
 		//7、接受合租者有对象
 		userPO.setPhSingle(transfCell2Integer(hssfRow,excelStartCol++));
-		//7.1、接受合租一屋
 		userPO.setPhSameroom(transfCell2Integer(hssfRow,excelStartCol++));
 		//8、接受地铁15分钟内
 		userPO.setPhSubway(transfCell2Integer(hssfRow,excelStartCol++));
@@ -120,7 +108,6 @@ public class ReadExcelData {
 		userPO.setPhTourism(transfCell2Integer(hssfRow, excelStartCol++));
 		//18、是否喜欢健身	
 		userPO.setPhHealth(transfCell2Integer(hssfRow, excelStartCol++));
-		//18.1、chihuo
 		userPO.setPhFood(transfCell2Integer(hssfRow,excelStartCol++));
 		//19、喜欢安静	
 		userPO.setPhQuiet(transfCell2Integer(hssfRow, excelStartCol++));

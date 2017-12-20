@@ -68,7 +68,7 @@ public class SearchFriendsController {
 			System.out.println("2");
 			//上线前修改此处
 //			/excel/aaa.xls
-			Boolean aaa=excelDataService.setUserData("C:"+ File.separator+File.separator + "aaa.xls",	6,idIndex);
+			Boolean aaa=excelDataService.setUserData("properties/aaa.xls",6,idIndex);
 			System.out.println("3"+aaa.toString());
 			ansList= searchFriendsService.SearchFriendsData(telphone);
 			System.out.println("4");
