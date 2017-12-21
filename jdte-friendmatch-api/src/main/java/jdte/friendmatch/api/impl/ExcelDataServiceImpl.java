@@ -1,5 +1,6 @@
 package jdte.friendmatch.api.impl;
 
+import com.alibaba.fastjson.JSON;
 import jdte.friendmatch.api.mapper.UserPOMapper;
 import jdte.friendmatch.api.pojo.UserPO;
 import jdte.friendmatch.api.service.ExcelDataService;
@@ -27,7 +28,8 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 		List<UserPO> userPOList = null;
 		try {
 			userPOList = ReadExcelData.readExcelData(excelPath,excelStartCol,idIndex);
-			System.out.println(userPOList.size());
+			logger.info("ExcelDataServiceImpl.setUserData, result is {}",
+					JSON.toJSON(userPOList));
 		} catch (IOException e) {
 			logger.error("ExcelDataServiceImpl.setUserData导入出错, 错误信息为: {}",
 					e.toString());
@@ -45,7 +47,7 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 		try {
 			result = userPOMapper.selectMaxId();
 		} catch (Exception e) {
-			logger.error("ExcelDataServiceImpl.getMaxId查询出错, 错误信息为: {}",
+			logger.error("ExcelDataServiceImpl.getMaxId 查询出错, 错误信息为: {}",
 					e.toString());
 		}
 		return result;

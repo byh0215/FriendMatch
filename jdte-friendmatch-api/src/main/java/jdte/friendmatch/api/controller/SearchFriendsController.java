@@ -1,5 +1,6 @@
 package jdte.friendmatch.api.controller;
 
+import com.alibaba.fastjson.JSON;
 import jdte.friendmatch.api.domain.MatchResult;
 import jdte.friendmatch.api.pojo.UserPO;
 import jdte.friendmatch.api.service.ExcelDataService;
@@ -57,25 +58,29 @@ public class SearchFriendsController {
     @ResponseBody
 	public List<MatchResult> searchFriend(@RequestParam(value="telphone") String telphone)
 			throws IOException {
-		System.out.println("lalalala");
+		logger.info("SearchFriendsController.searchFriend begin --> param is : {}", telphone);
 		List<MatchResult> ansList = new ArrayList<MatchResult>();
 		try {
-			System.out.println("1");
+
 			Integer idIndex = excelDataService.getMaxId();
-			if(idIndex==0){
-				idIndex=2;
+            logger.info("SearchFriendsController.searchFriend getMaxId, result is : {}", idIndex);
+			if(idIndex == 0)
+			{
+				idIndex = 2;
 			}
-			System.out.println("2");
+
 			//上线前修改此处
 //			/excel/aaa.xls
-			Boolean aaa=excelDataService.setUserData("C:"+ File.separator+File.separator + "aaa.xls",	6,idIndex);
-			System.out.println("3"+aaa.toString());
-			ansList= searchFriendsService.SearchFriendsData(telphone);
-			System.out.println("4");
-		} catch (Exception e) {
-			logger.error("匹配出错, 错误信息为: {}", e.toString());
-		}
+			Boolean aaa = excelDataService.setUserData("C:"+ File.separator + "aaa.xls",
+                    6,idIndex);
+            logger.info("SearchFriendsController.searchFriend importExcelData, result is : {}", aaa);
 
+			ansList = searchFriendsService.SearchFriendsData(telphone);
+            logger.info("SearchFriendsController.searchFriend SearchFriendsData, result is : {}",
+                    JSON.toJSON(ansList));
+		} catch (Exception e) {
+			logger.error("SearchFriendsController.searchFriend 匹配出错, 错误信息为: {}", e.toString());
+		}
 		return ansList;
 	}
 	

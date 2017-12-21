@@ -7,8 +7,13 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +29,8 @@ public class ReadExcelData {
 
 	private static InputStream inputStream;
 	private static HSSFWorkbook hssfWorkbook;
+
+	private static final Logger logger = LoggerFactory.getLogger(ReadExcelData.class);
 	
 	/**
 	 * 
@@ -36,12 +43,16 @@ public class ReadExcelData {
 	 */
 	public static List<UserPO> readExcelData(String excelPath, int excelStartCol, int idIndex)
 			throws IOException {
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
+
+		logger.info("ReadExcelData.readExcelData begin --> param is ( excelPath : {}, " +
+				"excelStartCol : {}, idIndex is {} )", excelPath, excelStartCol, idIndex);
+
 		FileInputStream fileInputStream = new FileInputStream(excelPath);
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
+
 		BufferedInputStream bufferedInputStream = new BufferedInputStream( fileInputStream);
+
 		POIFSFileSystem fileSystem = new POIFSFileSystem(bufferedInputStream);
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
+
 		hssfWorkbook = new HSSFWorkbook(fileSystem);
 
 		List<UserPO> listUserPO = new ArrayList<>();
