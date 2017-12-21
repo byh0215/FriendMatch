@@ -71,13 +71,14 @@ public class SearchFriendsController {
 
 			//上线前修改此处
 //			/excel/aaa.xls
-			Boolean aaa = excelDataService.setUserData("C:"+ File.separator + "aaa.xls",
+			Boolean aaa = excelDataService.setUserData("properties/aaa.xls",
                     6,idIndex);
             logger.info("SearchFriendsController.searchFriend importExcelData, result is : {}", aaa);
 
 			ansList = searchFriendsService.SearchFriendsData(telphone);
             logger.info("SearchFriendsController.searchFriend SearchFriendsData, result is : {}",
                     JSON.toJSON(ansList));
+
 		} catch (Exception e) {
 			logger.error("SearchFriendsController.searchFriend 匹配出错, 错误信息为: {}", e.toString());
 		}
