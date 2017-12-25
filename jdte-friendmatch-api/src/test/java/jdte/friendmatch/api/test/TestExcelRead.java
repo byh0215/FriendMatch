@@ -1,12 +1,14 @@
 package jdte.friendmatch.api.test;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import jdte.friendmatch.api.pojo.UserPO;
 import jdte.friendmatch.api.utils.ReadExcelData;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.junit.Test;
 
 /**
@@ -20,12 +22,14 @@ import org.junit.Test;
 public class TestExcelRead {
 
 	@Test
-	public void testReadExcel(){
+	public void testReadExcel() throws IOException {
 		ReadExcelData excelData =new ReadExcelData();
-		String excelPath="D:\\aaa.xls";
+		String excelPath="D:\\tools\\aaa.xls";
 		List<UserPO> listUserPO=new ArrayList<>();
+		InputStream inputStream = Object.class.getResourceAsStream(excelPath);
+		HSSFWorkbook hssfWorkbook = new HSSFWorkbook(inputStream);
 		try {
-			listUserPO=excelData.readExcelData(excelPath, 6,1);
+			listUserPO=excelData.readExcelData(hssfWorkbook, 6,2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

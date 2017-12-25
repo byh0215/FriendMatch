@@ -1,6 +1,7 @@
 package jdte.friendmatch.api.service;
 
 import jdte.friendmatch.api.domain.MatchResult;
+import jdte.friendmatch.api.pojo.UserPO;
 
 import java.util.List;
 
@@ -25,5 +26,6 @@ public interface SearchFriendsService {
 	* @return List    返回查询数据
 	* @throws
 	 */
-	List<MatchResult> SearchFriendsData(String username) throws Exception;
+	UserPO SearchFriendsData(String username);
+	List<UserPO> selectAllUser();
 }

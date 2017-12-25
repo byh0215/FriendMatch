@@ -28,7 +28,8 @@ public interface UserPOMapper {
      * @param telphone
      * @return
      */
-    List<MatchResult> selectByTelphone(String telphone);
+    UserPO selectByTelphone(String telphone);
+    List<UserPO> selectAll();
 
     /**
      * 查询个人习惯表中ph_id最大的值

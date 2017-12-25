@@ -1,21 +1,19 @@
 package jdte.friendmatch.api.utils;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import jdte.friendmatch.api.pojo.UserPO;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 
@@ -27,60 +25,35 @@ import java.util.List;
  */
 public class ReadExcelData {
 
-	private static InputStream inputStream;
-	private static HSSFWorkbook hssfWorkbook;
-
-	private static final Logger logger = LoggerFactory.getLogger(ReadExcelData.class);
-	
 	/**
 	 * 
 	* @Title: readExcelData
 	* @Description: 读取excel中的问卷信息
-	* @param excelPath   问卷的路径名
 	* @param excelStartCol   问卷中有效信息开始的列数(从1开始计数)
 	* @return List<UserPO>  返回UserPO的list集合
 	* @throws IOException  文件IO异常
 	 */
-	public static List<UserPO> readExcelData(String excelPath, int excelStartCol, int idIndex)
-			throws IOException {
-
-		logger.info("ReadExcelData.readExcelData begin --> param is ( excelPath : {}, " +
-				"excelStartCol : {}, idIndex is {} )", excelPath, excelStartCol, idIndex);
-
-		FileInputStream fileInputStream = new FileInputStream(excelPath);
-
-		BufferedInputStream bufferedInputStream = new BufferedInputStream( fileInputStream);
-
-		POIFSFileSystem fileSystem = new POIFSFileSystem(bufferedInputStream);
-
-		hssfWorkbook = new HSSFWorkbook(fileSystem);
-
-		List<UserPO> listUserPO = new ArrayList<>();
-
-		HSSFSheet hssfSheet=hssfWorkbook.getSheet("Sheet1");
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
-		int maxRow=hssfSheet.getLastRowNum();
-
-		if(hssfSheet==null || maxRow==idIndex)
-		{
-			return listUserPO;
-		}
-		System.out.println(excelPath+" "+excelStartCol+" "+idIndex);
-		//从第7列开始获取有用信息
-		for(int rowNum = idIndex; rowNum <= maxRow; rowNum ++)
-		{
-			System.out.println("ent for");
-			HSSFRow hssfRow = hssfSheet.getRow(rowNum);
-			if(hssfRow == null) {
+	//idIndex 数据库每次更新只更新新添加的数据，通过id来标识
+	public static List<UserPO> readExcelData(HSSFWorkbook hssfWorkbook,int excelStartCol,int idIndex) throws IOException{
+		List<UserPO> listUserPO=new ArrayList<>();
+		for(int sheetNum=0;sheetNum<hssfWorkbook.getNumberOfSheets();sheetNum++){
+			HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(sheetNum);
+			if(hssfSheet==null){
 				continue;
 			}
-			UserPO userPO = transfSheetRow2UserPO(hssfRow,excelStartCol);
-			listUserPO.add(userPO);
+			//从第7列开始获取有用信息
+			for(int rowNum=idIndex;rowNum<=hssfSheet.getLastRowNum();rowNum++){
+				HSSFRow hssfRow=hssfSheet.getRow(rowNum);
+				if(hssfRow==null){
+					continue;
+				}
+				UserPO userPO=transfSheetRow2UserPO(hssfRow,excelStartCol);
+				System.out.println(userPO.toString());
+				listUserPO.add(userPO);
+			}
 		}
-		System.out.println(listUserPO.size());
 		return listUserPO;
 	}
-
 	/**
 	 * 
 	* @Title: transfSheetRow2UserPO
@@ -91,23 +64,22 @@ public class ReadExcelData {
 	 */
 	private static UserPO transfSheetRow2UserPO(HSSFRow hssfRow,int excelStartCol){
 		UserPO userPO=new UserPO();
-		//0、id
-		userPO.setPhId(transfCell2Integer(hssfRow,1));
+		//0.id
+		userPO.setPhId(transfCell2Integer(hssfRow,0));
 		//1、姓名
 		userPO.setPhName(transfCell2String(hssfRow,excelStartCol++));
 		//2、性别
 		userPO.setPhSex(transfCell2Integer(hssfRow,excelStartCol++));
 		//3、电话号码
 		userPO.setPhTelphone(transfCell2String(hssfRow,excelStartCol++));
-		//4、入职时间
+		//45入职时间
 		userPO.setPhTimetag(transfCell2Integer(hssfRow,excelStartCol++));
-		//5、工作地点
-		userPO.setPhWorkstation(transfCell2Integer(hssfRow,excelStartCol++));
+		//4、工作地点
+		userPO.setPhArea(transfCell2Integer(hssfRow,excelStartCol++));
 		//6、接受异性混住
 		userPO.setPhDiffsex(transfCell2Integer(hssfRow,excelStartCol++));
 		//7、接受合租者有对象
 		userPO.setPhSingle(transfCell2Integer(hssfRow,excelStartCol++));
-		//7.1、接受合租一屋
 		userPO.setPhSameroom(transfCell2Integer(hssfRow,excelStartCol++));
 		//8、接受地铁15分钟内
 		userPO.setPhSubway(transfCell2Integer(hssfRow,excelStartCol++));
@@ -115,29 +87,28 @@ public class ReadExcelData {
 		userPO.setPhRide(transfCell2Integer(hssfRow,excelStartCol++));
 		//10、预期房租
 		userPO.setPhPrice(transfCell2Integer(hssfRow, excelStartCol++));
-		//11、距离市区距离	
-		userPO.setPhArea(transfCell2Integer(hssfRow, excelStartCol++));
+		//11、距离市区距离
+		userPO.setPhCenter(transfCell2Integer(hssfRow, excelStartCol++));
 		//12、岗位
-		userPO.setPhJob(transfCell2Integer(hssfRow, excelStartCol++));
-		//13、喜欢宠物	
+		userPO.setPhStation(transfCell2Integer(hssfRow, excelStartCol++));
+		//13、喜欢宠物
 		userPO.setPhAnimal(transfCell2Integer(hssfRow, excelStartCol++));
-		//14、喜欢音乐	
+		//14、喜欢音乐
 		userPO.setPhMusic(transfCell2Integer(hssfRow, excelStartCol++));
-		//15、游戏爱好者	
+		//15、游戏爱好者
 		userPO.setPhGame(transfCell2Integer(hssfRow, excelStartCol++));
-		//16、桌游爱好者（狼人杀，三国杀等）	
+		//16、桌游爱好者（狼人杀，三国杀等）
 		userPO.setPhTablegame(transfCell2Integer(hssfRow, excelStartCol++));
-		//17、是否喜爱旅游/摄影？	
+		//17、是否喜爱旅游/摄影？
 		userPO.setPhTourism(transfCell2Integer(hssfRow, excelStartCol++));
-		//18、是否喜欢健身	
+		//18、是否喜欢健身
 		userPO.setPhHealth(transfCell2Integer(hssfRow, excelStartCol++));
-		//18.1、chihuo
 		userPO.setPhFood(transfCell2Integer(hssfRow,excelStartCol++));
-		//19、喜欢安静	
+		//19、喜欢安静
 		userPO.setPhQuiet(transfCell2Integer(hssfRow, excelStartCol++));
-		//20、个人技能（使用,隔开）	
+		//20、个人技能（使用,隔开）
 		userPO.setPhSkill(transfCell2String(hssfRow, excelStartCol++));
-		//21、个人QQ/微信	
+		//21、个人QQ/微信
 		userPO.setPhQQWechar(transfCell2String(hssfRow, excelStartCol++));
 		//22、是否公开自己的合租信息给18的其他京东小伙伴
 		userPO.setPhOpen(transfCell2Integer(hssfRow, excelStartCol++));

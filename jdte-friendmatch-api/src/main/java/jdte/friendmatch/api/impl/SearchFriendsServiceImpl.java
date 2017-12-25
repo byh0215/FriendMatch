@@ -22,7 +22,11 @@ public class SearchFriendsServiceImpl implements SearchFriendsService{
      * @return
      */
 	@Override
-	public List<MatchResult> SearchFriendsData(String telphone){
+	public UserPO SearchFriendsData(String telphone){
         return userPOMapper.selectByTelphone(telphone);
+	}
+	@Override
+	public List<UserPO> selectAllUser(){
+		return userPOMapper.selectAll();
 	}
 }
