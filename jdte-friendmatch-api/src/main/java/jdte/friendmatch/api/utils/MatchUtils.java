@@ -14,26 +14,27 @@ public class MatchUtils {
 		  double adaptValue=getCharacteristic(majorUser,aUser);
 		  if (aUser.getPhOpen()==0)continue;
 		  if (aUser.getPhTelphone().equals(majorUser.getPhTelphone()))continue;
-		  if((150.0 - adaptValue) > 60.0){
+		  if((adaptValue) > 60.0){
 			  MatchResult res=new MatchResult();
 			  res.setName(aUser.getPhName());
 			  res.setPhTelphone(aUser.getPhTelphone());
 			  res.setSkill(aUser.getPhSkill());
 			  res.setCall(aUser.getPhQQWechar());
-			  res.setValue(150.0-adaptValue);
+			  res.setValue(adaptValue);
 			  ansList.add(res);
 		  }
 	  }
 	  return ansList;
   }
   public static double getCharacteristic(UserPO u1,UserPO u2){
-	  double res=0.0;
-	  if(u1.getPhDiffsex()!=u2.getPhDiffsex()||u1.getPhTimetag()!=u2.getPhTimetag()
-			  ||u1.getPhSameroom()!=u2.getPhSameroom()||u1.getPhArea()!=u2.getPhArea()){
-	  	return 91.0;
+	  double res=150.0;
+	  if(u1.getPhTimetag()!=u2.getPhTimetag()){
+		  res-=71.0;
 	  }
 	  if (u1.getPhDiffsex()+u2.getPhDiffsex()==2.0){
-		  res = Math.abs(u1.getPhSex()-u2.getPhSex())+
+		  res -= Math.abs(u1.getPhSex()-u2.getPhSex())+
+				  50*Math.abs(u1.getPhSameroom()-u2.getPhSameroom())+
+				  25*Math.abs(u1.getPhArea()-u2.getPhArea())+
 				  4*Math.abs(u1.getPhSubway()-u2.getPhSubway())+
 				  2*Math.abs(u1.getPhRide()-u2.getPhRide())+
 				  10*Math.abs(u1.getPhPrice()-u2.getPhPrice())+
@@ -48,7 +49,9 @@ public class MatchUtils {
 				  4*Math.abs(u1.getPhFood()-u2.getPhFood())+
 				  20*Math.abs(u1.getPhQuiet()-u2.getPhQuiet());
 	  }else{
-		  res = 90*Math.abs(u1.getPhSex()-u2.getPhSex())+
+		  res -= 90*Math.abs(u1.getPhSex()-u2.getPhSex())+
+				  10*Math.abs(u1.getPhSameroom()-u2.getPhSameroom())+
+				  25*Math.abs(u1.getPhArea()-u2.getPhArea())+
 				  4*Math.abs(u1.getPhSubway()-u2.getPhSubway())+
 				  2*Math.abs(u1.getPhRide()-u2.getPhRide())+
 				  10*Math.abs(u1.getPhPrice()-u2.getPhPrice())+

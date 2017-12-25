@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -71,6 +73,20 @@ public class SearchFriendsController {
 			UserPO mUser = searchFriendsService.SearchFriendsData(telphone);
 			List<UserPO> userPOList = searchFriendsService.selectAllUser();
 			ansList=MatchUtils.getFriend(mUser,userPOList);
+			Collections.sort(ansList, new Comparator(){
+				@Override
+				public int compare(Object o1, Object o2) {
+					MatchResult stu1=(MatchResult)o1;
+					MatchResult stu2=(MatchResult)o2;
+					if(stu1.getValue()<stu2.getValue()){
+						return 1;
+					}else if(stu1.getValue()==stu2.getValue()){
+						return 0;
+					}else{
+						return -1;
+					}
+				}
+			});
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("匹配出错, 错误信息为: {}", e.toString());

@@ -27,42 +27,13 @@ public class ReadExcelData {
 
 	/**
 	 * 
-	* @Title: readExcelData
-	* @Description: 读取excel中的问卷信息
-	* @param excelStartCol   问卷中有效信息开始的列数(从1开始计数)
-	* @return List<UserPO>  返回UserPO的list集合
-	* @throws IOException  文件IO异常
-	 */
-	//idIndex 数据库每次更新只更新新添加的数据，通过id来标识
-	public static List<UserPO> readExcelData(HSSFWorkbook hssfWorkbook,int excelStartCol,int idIndex) throws IOException{
-		List<UserPO> listUserPO=new ArrayList<>();
-		for(int sheetNum=0;sheetNum<hssfWorkbook.getNumberOfSheets();sheetNum++){
-			HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(sheetNum);
-			if(hssfSheet==null){
-				continue;
-			}
-			//从第7列开始获取有用信息
-			for(int rowNum=idIndex;rowNum<=hssfSheet.getLastRowNum();rowNum++){
-				HSSFRow hssfRow=hssfSheet.getRow(rowNum);
-				if(hssfRow==null){
-					continue;
-				}
-				UserPO userPO=transfSheetRow2UserPO(hssfRow,excelStartCol);
-				System.out.println(userPO.toString());
-				listUserPO.add(userPO);
-			}
-		}
-		return listUserPO;
-	}
-	/**
-	 * 
 	* @Title: transfSheetRow2UserPO
 	* @Description: 封装UserPO对象
 	* @param hssfRow  excel单张表对象每行的记录
 	* @param excelStartCol 问卷中有效信息开始的列数(从1开始计数)
 	* @return UserPO    返回UserPO对象
 	 */
-	private static UserPO transfSheetRow2UserPO(HSSFRow hssfRow,int excelStartCol){
+	public static UserPO transfSheetRow2UserPO(HSSFRow hssfRow,int excelStartCol){
 		UserPO userPO=new UserPO();
 		//0.id
 		userPO.setPhId(transfCell2Integer(hssfRow,0));

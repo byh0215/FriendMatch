@@ -8,6 +8,7 @@ import java.util.List;
 import jdte.friendmatch.api.pojo.UserPO;
 import jdte.friendmatch.api.utils.ReadExcelData;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.junit.Test;
 
@@ -28,11 +29,8 @@ public class TestExcelRead {
 		List<UserPO> listUserPO=new ArrayList<>();
 		InputStream inputStream = Object.class.getResourceAsStream(excelPath);
 		HSSFWorkbook hssfWorkbook = new HSSFWorkbook(inputStream);
-		try {
-			listUserPO=excelData.readExcelData(hssfWorkbook, 6,2);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(0);
+//			listUserPO=excelData.readExcelData(hssfSheet, 6,2);
 		if(listUserPO!=null){
 			for (UserPO userPO : listUserPO) {
 				System.out.println(userPO.toString());
