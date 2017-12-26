@@ -31,7 +31,8 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 	public boolean setUserData(String excelPath,int excelStartCol,int idIndex) throws IOException {
 		List<UserPO> userPOList = new ArrayList<>();
 		String basePath= this.getClass().getClassLoader().getResource("/").getPath();
-		File file = new File(basePath+"properties/"+excelPath);
+		File file = new File(basePath+"properties"+excelPath);
+		System.out.println(basePath+"properties/"+excelPath);
 		InputStream inputStream = new FileInputStream(file);
 		HSSFWorkbook hssfWorkbook = new HSSFWorkbook(inputStream);
 		HSSFSheet hssfSheet=hssfWorkbook.getSheetAt(0);
